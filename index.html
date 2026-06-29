@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mythili S — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FCFAF7;
+    --card:#FFFFFF;
+    --ink:#15171C;
+    --ink-soft:#6B6A75;
+    --violet:#5B4EE5;
+    --violet-tint:#EEEBFD;
+    --coral:#FF8A5C;
+    --coral-tint:#FFEDE3;
+    --mint:#1FAE7E;
+    --mint-tint:#E4F6EF;
+    --line:#E8E5DD;
+    --max:1100px;
+    --r:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--violet); font-weight:600;
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(252,250,247,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:var(--max); margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-logo{
+    font-family:'Fraunces',serif; font-weight:600; font-size:20px;
+  }
+  .nav-logo span{color:var(--violet);}
+  .nav-links{display:flex; gap:32px; align-items:center;}
+  .nav-links a{font-size:14.5px; font-weight:500; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ink); color:var(--paper) !important;
+    padding:10px 20px; border-radius:30px; font-size:14px; font-weight:600;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    padding:84px 0 60px;
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:40px;
+    align-items:center;
+  }
+  .blob{
+    position:absolute;
+    width:560px; height:560px;
+    right:-120px; top:-80px;
+    background:radial-gradient(circle at 35% 30%, var(--violet) 0%, var(--coral) 55%, transparent 75%);
+    opacity:0.16;
+    border-radius:48% 52% 60% 40%/55% 45% 55% 45%;
+    filter:blur(10px);
+    animation:morph 14s ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes morph{
+    0%,100%{border-radius:48% 52% 60% 40%/55% 45% 55% 45%; transform:rotate(0deg) scale(1);}
+    50%{border-radius:60% 40% 45% 55%/45% 55% 45% 55%; transform:rotate(8deg) scale(1.05);}
+  }
+  .hero-text{position:relative; z-index:1;}
+  .hero-text .eyebrow{display:flex; align-items:center; gap:8px; margin-bottom:20px;}
+  .hero-text .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--mint-tint);}
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(40px,5.6vw,64px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin-bottom:22px;
+  }
+  .hero h1 .accent{
+    font-style:italic;
+    color:var(--violet);
+    font-weight:500;
+  }
+  .hero p.lede{
+    font-size:17.5px; color:var(--ink-soft); max-width:480px; margin-bottom:30px;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px;}
+  .btn{
+    font-size:14.5px; font-weight:600; padding:13px 26px; border-radius:30px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--violet); color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(91,78,229,0.35);}
+  .btn-outline{border:1.5px solid var(--ink); color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--paper);}
+
+  .pill-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .pill{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; font-weight:500;
+    padding:7px 14px; border-radius:20px;
+    background:var(--card); border:1px solid var(--line);
+    color:var(--ink-soft);
+  }
+
+  .portrait-wrap{
+    position:relative; z-index:1;
+    display:flex; justify-content:center;
+  }
+  .portrait-blob{
+    position:relative;
+    width:320px; height:380px;
+  }
+  .portrait-blob .shape{
+    position:absolute; inset:0;
+    background:linear-gradient(160deg, var(--violet-tint), var(--coral-tint));
+    border-radius:46% 54% 58% 42%/60% 48% 52% 40%;
+  }
+  .portrait-blob img{
+    position:absolute;
+    width:88%; height:88%;
+    top:6%; left:6%;
+    object-fit:cover;
+    object-position:center 15%;
+    border-radius:42% 58% 55% 45%/58% 45% 55% 42%;
+    box-shadow:0 30px 60px -20px rgba(21,23,28,0.25);
+  }
+  .badge{
+    position:absolute;
+    bottom:-6px; left:-26px;
+    width:108px; height:108px;
+    background:var(--ink);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    transform:rotate(-12deg);
+    box-shadow:0 14px 30px -8px rgba(21,23,28,0.4);
+  }
+  .badge span{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--paper);
+    font-size:11.5px;
+    font-weight:600;
+    line-height:1.4;
+    letter-spacing:0.02em;
+  }
+
+  /* ===== SECTION shell ===== */
+  section{padding:88px 0;}
+  .section-tag{margin-bottom:14px;}
+  .section-title{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(28px,3.4vw,40px);
+    margin-bottom:16px;
+    max-width:600px;
+  }
+  .section-desc{color:var(--ink-soft); font-size:16px; max-width:560px; margin-bottom:48px;}
+
+  /* ===== SKILLS constellation ===== */
+  .skills-section{background:var(--ink); color:var(--paper); border-radius:32px; margin:0 auto; max-width:calc(var(--max) - 0px); padding:72px 48px;}
+  .skills-section .section-desc{color:#A6A4AF;}
+  .skills-section .eyebrow{color:var(--coral);}
+  .skill-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .skill-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:16px;
+    padding:22px 18px;
+    transition:transform .2s, background .2s;
+  }
+  .skill-card:hover{transform:translateY(-4px); background:rgba(255,255,255,0.08);}
+  .skill-card .icon-dot{
+    width:34px; height:34px; border-radius:10px;
+    background:var(--violet);
+    margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px;
+  }
+  .skill-card h4{font-size:15px; font-weight:700; margin-bottom:8px;}
+  .skill-card p{font-size:13px; color:#A6A4AF; line-height:1.5;}
+
+  /* ===== PROJECTS ===== */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .pcard{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--r);
+    padding:28px 26px;
+    display:flex; flex-direction:column;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .pcard:hover{
+    transform:translateY(-6px);
+    box-shadow:0 24px 40px -16px rgba(21,23,28,0.14);
+    border-color:transparent;
+  }
+  .pcard .tagrow{display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap;}
+  .ptag{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:600;
+    padding:4px 10px; border-radius:20px;
+  }
+  .ptag.t1{background:var(--violet-tint); color:var(--violet);}
+  .ptag.t2{background:var(--coral-tint); color:#C2532A;}
+  .ptag.t3{background:var(--mint-tint); color:var(--mint);}
+  .pcard h3{
+    font-family:'Fraunces',serif; font-weight:600; font-size:21px; margin-bottom:10px;
+  }
+  .pcard p{font-size:14px; color:var(--ink-soft); margin-bottom:18px; flex-grow:1;}
+  .pcard .stat-strip{
+    display:flex; gap:18px; padding-top:16px; border-top:1px solid var(--line); margin-bottom:16px;
+  }
+  .pcard .stat{display:flex; flex-direction:column;}
+  .pcard .stat b{font-family:'Fraunces',serif; font-size:19px;}
+  .pcard .stat span{font-size:11px; color:var(--ink-soft);}
+  .pcard .plink{
+    font-size:13.5px; font-weight:700; color:var(--ink);
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .pcard .plink:hover{color:var(--violet);}
+
+  /* ===== TIMELINE (education / certs) ===== */
+  .timeline-section{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .tl{position:relative; padding-left:28px;}
+  .tl::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px;
+    width:2px; background:var(--line);
+  }
+  .tl-item{position:relative; padding-bottom:30px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-28px; top:3px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--violet); border:3px solid var(--paper);
+    box-shadow:0 0 0 2px var(--violet);
+  }
+  .tl-item .tl-date{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--violet); font-weight:600; margin-bottom:4px; display:block;
+  }
+  .tl-item h4{font-size:16px; font-weight:700; margin-bottom:4px;}
+  .tl-item .tl-sub{font-size:13.5px; color:var(--ink-soft);}
+
+  .subhead{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--ink-soft); margin-bottom:22px; font-weight:600;
+  }
+
+  /* ===== CERT cards ===== */
+  .cert-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:18px 20px; margin-bottom:14px;
+    display:flex; align-items:center; gap:16px;
+  }
+  .cert-icon{
+    width:42px; height:42px; border-radius:12px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--mint-tint); color:var(--mint); font-weight:700; font-family:'JetBrains Mono',monospace;
+  }
+  .cert-card h4{font-size:14.5px; font-weight:700; margin-bottom:2px;}
+  .cert-card .cert-meta{font-size:12.5px; color:var(--ink-soft);}
+
+  /* ===== CONTACT ===== */
+  .contact-band{
+    background:linear-gradient(135deg, var(--violet) 0%, #8B7FF0 100%);
+    border-radius:32px;
+    padding:64px 56px;
+    color:#fff;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-band::after{
+    content:"";
+    position:absolute; width:340px; height:340px; border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    right:-100px; bottom:-140px;
+  }
+  .contact-band h2{
+    font-family:'Fraunces',serif; font-weight:600; font-size:clamp(30px,4vw,46px);
+    margin-bottom:16px; position:relative; z-index:1;
+  }
+  .contact-band p{opacity:0.85; max-width:480px; margin:0 auto 32px; position:relative; z-index:1;}
+  .contact-row{
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap; position:relative; z-index:1;
+  }
+  .contact-row a{
+    background:rgba(255,255,255,0.14);
+    border:1px solid rgba(255,255,255,0.3);
+    padding:12px 22px; border-radius:30px; font-size:14px; font-weight:600;
+    backdrop-filter:blur(6px);
+    transition:background .15s;
+  }
+  .contact-row a:hover{background:rgba(255,255,255,0.26);}
+
+  footer{
+    padding:30px 0 40px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:13px; color:var(--ink-soft);
+  }
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr; padding-top:48px;}
+    .blob{display:none;}
+    .portrait-wrap{order:-1;}
+    .skill-grid{grid-template-columns:repeat(2,1fr);}
+    .project-grid{grid-template-columns:1fr;}
+    .timeline-section{grid-template-columns:1fr; gap:40px;}
+    .nav-links{display:none;}
+    .skills-section{padding:48px 26px; border-radius:24px;}
+    .contact-band{padding:48px 28px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .blob{animation:none;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="nav-logo">mythili<span>.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Projects</a>
+      <a href="#background">Background</a>
+    </div>
+    <a class="nav-cta" href="#contact">Let's talk</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="blob"></div>
+    <div class="hero-text">
+      <div class="eyebrow">Open to data analyst roles</div>
+      <h1>Hi, I'm Mythili.<br>I turn numbers<br>into <span class="accent">decisions.</span></h1>
+      <p class="lede">A Data Analytics fresher with 120 hours of industry training, three end-to-end projects, and a habit of turning messy spreadsheets into dashboards people actually trust.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">See my projects ↓</a>
+        <a class="btn btn-outline" href="mailto:mythili2006.feb@gmail.com">Say hello</a>
+      </div>
+      <div class="pill-row">
+        <span class="pill">Python</span>
+        <span class="pill">SQL</span>
+        <span class="pill">Power BI</span>
+        <span class="pill">Excel</span>
+        <span class="pill">EDA</span>
+      </div>
+    </div>
+    <div class="portrait-wrap">
+      <div class="portrait-blob">
+        <div class="shape"></div>
+        <img src="profile.png" alt="Mythili S">
+        <div class="badge"><span>Fresher,<br>ready to<br>ship</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="skills-section">
+      <div class="eyebrow section-tag">What I work with</div>
+      <h2 class="section-title" style="color:#fff;">A small, sharp toolkit —<br>used end to end.</h2>
+      <p class="section-desc">Each tool here has shown up in a real project, not just a course certificate.</p>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="icon-dot">Py</div>
+          <h4>Python</h4>
+          <p>Pandas, NumPy, Matplotlib, Seaborn for cleaning and exploring data.</p>
+        </div>
+        <div class="skill-card">
+          <div class="icon-dot">DB</div>
+          <h4>SQL</h4>
+          <p>Joins, subqueries, GROUP BY, window functions, CASE-based logic.</p>
+        </div>
+        <div class="skill-card">
+          <div class="icon-dot">BI</div>
+          <h4>Power BI</h4>
+          <p>DAX measures, data modeling, interactive dashboards.</p>
+        </div>
+        <div class="skill-card">
+          <div class="icon-dot">Xl</div>
+          <h4>Excel</h4>
+          <p>INDEX/MATCH, pivot-style summaries, formula-driven reporting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="work">
+    <div class="eyebrow section-tag">Selected work</div>
+    <h2 class="section-title">Three projects, three<br>different angles on data.</h2>
+    <p class="section-desc">I learn best by building. Here are 3 projects where I did — each one tackling the analyst workflow differently: a full pipeline, a pure-SQL deep dive, and a formula-driven Excel report.</p>
+
+    <div class="project-grid">
+      <div class="pcard">
+        <div class="tagrow">
+          <span class="ptag t1">Python</span><span class="ptag t1">MySQL</span><span class="ptag t1">Power BI</span>
+        </div>
+        <h3>Customer Shopping Behavior Analysis</h3>
+        <p>Cleaned 1,000 retail customer records in Pandas, modeled them in MySQL, and built a Power BI dashboard answering questions like who spends more — subscribers or repeat buyers?</p>
+        <div class="stat-strip">
+          <div class="stat"><b>1,000</b><span>Rows Analyzed</span></div>
+          <div class="stat"><b>10</b><span>SQL Queries</span></div>
+        </div>
+        <a class="plink" href="https://github.com/mythili6412/Customer_Shopping_Analysis" target="_blank">View repository →</a>
+      </div>
+
+      <div class="pcard">
+        <div class="tagrow">
+          <span class="ptag t2">SQL</span><span class="ptag t2">MySQL</span>
+        </div>
+        <h3>Zepto Order Analytics</h3>
+        <p>Self-generated 2,000-row dataset modeled after real quick-commerce data — analyzed using 15 SQL queries covering revenue, cancellations, and YoY growth. Investigated top spenders, monthly revenue trends, most-cancelled products, and 2023 vs 2024 growth.</p>
+        <div class="stat-strip">
+          <div class="stat"><b>2,000</b><span>Rows Analyzed</span></div>
+          <div class="stat"><b>15</b><span>SQL Queries</span></div>
+        </div>
+        <a class="plink" href="https://github.com/mythili6412/Zepto-SQL-project-analysis" target="_blank">View repository →</a>
+      </div>
+
+      <div class="pcard">
+        <div class="tagrow">
+          <span class="ptag t3">Excel</span>
+        </div>
+        <h3>YouTube Channel Performance</h3>
+        <p>A formula-driven Excel workbook using INDEX/MATCH to surface top and underperforming videos — and a finding that views and engagement don't always agree.</p>
+        <div class="stat-strip">
+          <div class="stat"><b>15</b><span>Videos Analyzed</span></div>
+          <div class="stat"><b>10.99%</b><span>Avg. Engagement</span></div>
+        </div>
+        <a class="plink" href="https://github.com/mythili6412/Youtube-video-analysis-Using-Excel" target="_blank">View repository →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACKGROUND: education, internship, certifications -->
+  <section id="background">
+    <div class="eyebrow section-tag">Background</div>
+    <h2 class="section-title">Education, training<br>and hands-on experience.</h2>
+
+    <div class="timeline-section">
+      <div>
+        <div class="subhead">Education & Internship</div>
+        <div class="tl">
+          <div class="tl-item">
+            <span class="tl-date">2023 – 2026</span>
+            <h4>BSc, Bioinformatics & Data Science</h4>
+            <span class="tl-sub">Sathyabama Institute, Chennai · CGPA 7.3</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-date">Jun – Jul 2025</span>
+            <h4>Advance Bioinformatics Intern</h4>
+            <span class="tl-sub">Ethical Edufabrica Pvt. Ltd — protein interaction mapping & sequence alignment using SWISS-MODEL, Cytoscape, NCBI BLAST</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-date">2021 – 2023</span>
+            <h4>HSC, Bio Maths</h4>
+            <span class="tl-sub">Govt. Higher Secondary School, Kurumandur · 74%</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="subhead">Certifications & Training</div>
+        <div class="cert-card">
+          <div class="cert-icon">120h</div>
+          <div>
+            <h4>Data Analytics — Industry-Oriented Training</h4>
+            <div class="cert-meta">Agaram Foundation · Dec 2025 – May 2026</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">EN</div>
+          <div>
+            <h4>Spoken English</h4>
+            <div class="cert-meta">English Partner</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">SEC</div>
+          <div>
+            <h4>Cyber Security</h4>
+            <div class="cert-meta">Skill India · Tech Mahindra</div>
+          </div>
+        </div>
+
+        <div class="subhead" style="margin-top:32px;">Languages & soft skills</div>
+        <div class="pill-row">
+          <span class="pill">Tamil — Native</span>
+          <span class="pill">English — Intermediate</span>
+          <span class="pill">Leadership</span>
+          <span class="pill">Problem Solving</span>
+          <span class="pill">Team Work</span>
+          <span class="pill">Communication</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-band">
+      <h2>Let's make better decisions<br>with your data.</h2>
+      <p>Reach out for Data Analyst opportunities and internships.</p>
+      <div class="contact-row">
+        <a href="mailto:mythili2006.feb@gmail.com">✉ mythili2006.feb@gmail.com</a>
+        <a href="tel:+919944782460">📞 +91 99447 82460</a>
+        <a href="https://www.linkedin.com/in/mythili-subramani06" target="_blank">LinkedIn ↗</a>
+        <a href="https://github.com/mythili6412" target="_blank">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
+    <span>© 2026 Mythili S</span>
+    <span>Chennai, India</span>
+  </div>
+</footer>
+
+</body>
+</html>
